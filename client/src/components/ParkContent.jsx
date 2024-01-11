@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useState } from 'react';
 import * as THREE from 'three';
 import { useAtom } from 'jotai';
 import {
@@ -18,7 +18,7 @@ import AniHusky from './models/AniHusky';
 
 import { socket } from './SocketManager';
 
-export default function ParkContent(props) {
+export default function ParkContent() {
   const role = JSON.parse(localStorage.getItem('user'))?.role;
   const garden = useFBX('/models/garden.fbx');
   const [characters] = useAtom(charactersAtom);
@@ -97,6 +97,7 @@ export default function ParkContent(props) {
                   character.position[2]
                 )
               }
+              nickname={character.nickname}
             />
           );
         }
