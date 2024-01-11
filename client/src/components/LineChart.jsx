@@ -1,12 +1,46 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
-import { mockLineData } from "../data/mockData";
+import axios from "axios";
+import {mockLineData} from "../data/mockData";
+
+function addLine(data, id) {
+   return {
+     id: id,
+     color: id==="어제" ? tokens("dark").blueAccent[300] :  tokens("dark").redAccent[200],
+     data: data.map(item => ({
+       x: item.kind,
+       y: item.count,
+     }))
+   }
+}
 
 const LineChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const url = process.env.REACT_APP_DASHBOARD_URL + `/dogs/count?date=` + new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const [data, setData] = useState([]);
+  const getEntry = async () => {
+    try {
+      let response = await axios.get(url);
+      let data = response.data.data
+      const prevData = data.previous_day_dogs;
+      const curData = data.current_day_dogs;
+      setData(prev => [addLine(prevData,"어제"), addLine(curData, "오늘")])
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    getEntry();
+    if (user == null) {
+      window.location.href = "/login";
+    }
+  }, []);
+
   return (
     <ResponsiveLine
       theme={{
@@ -44,7 +78,7 @@ const LineChart = ({ isDashboard = false }) => {
         },
       }}
       curve="catmullRom"
-      data={mockLineData}
+      data={data}
       colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: "point" }}

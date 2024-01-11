@@ -13,61 +13,61 @@ import { MyProSidebarProvider } from './page/global/sidebar/sidebarContext';
 import CustomHome from './page/custom/CustomHome';
 
 const App = () => {
-  const [theme, colorMode] = useMode();
-  const role = JSON.parse(localStorage.getItem('user'))?.role;
-  return (
-    <div className='App'>
-      <SocketManager />
-      {role === 1 ? (
-        <ColorModeContext.Provider value={colorMode}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <MyProSidebarProvider>
-              <div style={{ height: '100%', width: '100%' }}>
-                <main>
-                  <Topbar />
-                  <Routes>
-                    <Route
-                      path='/'
-                      element={<Navigate to='/admin/home' replace />}
-                    />
-                    <Route path='/admin/home' element={<AdminHome />}></Route>
-                    <Route
-                      path='/admin/custom'
-                      element={<CustomHome />}
-                    ></Route>
-                    <Route
-                      path='/admin/parkInfo'
-                      element={<AdminHome />}
-                    ></Route>
-                  </Routes>
-                </main>
-              </div>
-            </MyProSidebarProvider>
-          </ThemeProvider>
-        </ColorModeContext.Provider>
-      ) : role === 2 ? (
-        <div style={{ height: '100%', width: '100%' }}>
-          <main>
-            <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/park' element={<Park />}></Route>
-            </Routes>
-          </main>
+    const [theme, colorMode] = useMode();
+    const role = JSON.parse(localStorage.getItem('user'))?.role;
+    return (
+        <div className='App'>
+            <SocketManager />
+            {role === 1 ? (
+                <ColorModeContext.Provider value={colorMode}>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <MyProSidebarProvider>
+                            <div style={{ height: '100%', width: '100%' }}>
+                                <main>
+                                    <Topbar />
+                                    <Routes>
+                                        <Route
+                                            path='/'
+                                            element={<Navigate to='/admin/home' replace />}
+                                        />
+                                        <Route path='/admin/home' element={<AdminHome />}></Route>
+                                        <Route
+                                            path='/admin/custom'
+                                            element={<CustomHome />}
+                                        ></Route>
+                                        <Route
+                                            path='/admin/parkInfo'
+                                            element={<AdminHome />}
+                                        ></Route>
+                                    </Routes>
+                                </main>
+                            </div>
+                        </MyProSidebarProvider>
+                    </ThemeProvider>
+                </ColorModeContext.Provider>
+            ) : role === 2 ? (
+                <div style={{ height: '100%', width: '100%' }}>
+                    <main>
+                        <Routes>
+                            <Route path='/' element={<Home />}></Route>
+                            <Route path='/park' element={<Park />}></Route>
+                        </Routes>
+                    </main>
+                </div>
+            ) : (
+                <div style={{ height: '100%', width: '100%' }}>
+                    <main>
+                        <Routes>
+                            <Route path='/' element={<Navigate to='/login' replace />} />
+                            <Route path='/login' element={<Login />}></Route>
+                            <Route path='/signup' element={<Signup />}></Route>
+                        </Routes>
+                    </main>
+                </div>
+            )}
         </div>
-      ) : (
-        <div style={{ height: '100%', width: '100%' }}>
-          <main>
-            <Routes>
-              <Route path='/' element={<Navigate to='/login' replace />} />
-              <Route path='/login' element={<Login />}></Route>
-              <Route path='/signup' element={<Signup />}></Route>
-            </Routes>
-          </main>
-        </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default App;
