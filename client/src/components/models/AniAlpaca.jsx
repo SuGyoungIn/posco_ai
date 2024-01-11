@@ -14,7 +14,6 @@ export default function AniAlpaca(props) {
   const { scene, materials, animations } = useGLTF('/models/Alpaca.glb');
   const { actions } = useAnimations(animations, group);
   const [ani, setAni] = useState('AnimalArmature|Idle');
-  const nickname = JSON.parse(localStorage.getItem('user'))?.nickname;
 
   const SPEED = 0.5;
   const position = useMemo(() => props.position, []);
@@ -52,7 +51,7 @@ export default function AniAlpaca(props) {
         anchorY='middle'
         position={new THREE.Vector3(position[0], 5, position[2])}
       >
-        {nickname}
+        {props.nickname}
       </Text>
       <group name='Root_Scene'>
         <group name='RootNode'>

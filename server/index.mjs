@@ -11,14 +11,7 @@ io.listen(3001);
 const characters = [];
 
 const generateRandomPosition = () => {
-  const min = -200;
-  const max = 200;
-
-  return [
-    Math.floor(Math.random() * (max - min + 1)) + min,
-    25,
-    Math.floor(Math.random() * (max - min + 1)) + min,
-  ];
+  return [0, 25, 0];
 };
 
 io.on('connection', (socket) => {
@@ -48,7 +41,7 @@ io.on('connection', (socket) => {
     const character = characters.find((character) => character.id === data.id);
     if (character) {
       io.emit('message', {
-        nickname: characters.nickname,
+        nickname: character.nickname,
         message: data.message,
       });
     }
