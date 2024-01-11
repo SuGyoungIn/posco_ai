@@ -2,7 +2,7 @@ import { Server } from 'socket.io';
 
 const io = new Server({
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
   },
 });
 
@@ -26,7 +26,9 @@ io.on('connection', (socket) => {
 
   characters.push({
     id: socket.id,
+    nickname: null,
     position: generateRandomPosition(),
+    animal: null,
   });
 
   socket.emit('hello');
@@ -42,11 +44,23 @@ io.on('connection', (socket) => {
     io.emit('characters', characters);
   });
 
-  socket.on('chat message', (message) => {
-    io.emit('message', {
-      userId: socket.id,
-      message: message,
-    });
+  socket.on('chat message', (data) => {
+    const character = characters.find((character) => character.id === data.id);
+    if (character) {
+      io.emit('message', {
+        nickname: characters.nickname,
+        message: data.message,
+      });
+    }
+  });
+
+  socket.on('pickAnimal', (data) => {
+    const character = characters.find((character) => character.id === data.id);
+    if (character) {
+      character.nickname = data.data[0];
+      character.animal = data.data[1];
+      io.emit('characters', characters);
+    }
   });
 
   socket.on('disconnect', () => {
