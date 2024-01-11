@@ -10,7 +10,6 @@ import Topbar from './page/global/Topbar';
 import { ColorModeContext, useMode } from './theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { MyProSidebarProvider } from './page/global/sidebar/sidebarContext';
-// import HeaderInfo from './components/HeaderInfo';
 import CustomHome from './page/custom/CustomHome';
 
 const App = () => {

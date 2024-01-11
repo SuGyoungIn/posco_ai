@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Table } from 'react-bootstrap';
+import axios from 'axios';
 
-import Header from "../components/Header";
-import Detail from "../components/Detail"; // Detail 컴포넌트 추가
+import Header from '../components/Header';
+import Detail from '../components/Detail'; // Detail 컴포넌트 추가
 
 const divStyle = {
-  display: "flex",
-  justifyContent: "space-between",
+  display: 'flex',
+  justifyContent: 'space-between',
 };
 
 function AdminHome(props) {
@@ -17,10 +17,10 @@ function AdminHome(props) {
   const [selectedData, setSelectedData] = useState(null);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem('user');
     getEntry(currentPage);
     if (user == null) {
-      window.location.href = "/login";
+      window.location.href = '/login';
     }
   }, []);
 
@@ -59,7 +59,7 @@ function AdminHome(props) {
     if (createdAt) {
       return createdAt.slice(0, 10); // "2024-01-06"까지만 추출
     }
-    return ""; // 또는 다른 기본값을 반환할 수 있습니다.
+    return ''; // 또는 다른 기본값을 반환할 수 있습니다.
   };
 
   const renderDataList = () => {
@@ -71,8 +71,8 @@ function AdminHome(props) {
           <td>{formatCreatedAt(data.createdAt)}</td>
           <td>
             <button
-              type="button"
-              className="btn btn-primary"
+              type='button'
+              className='btn btn-primary'
               onClick={() => handleShowDetail(data)}
             >
               상세보기
@@ -93,7 +93,7 @@ function AdminHome(props) {
     <div>
       <Header />
       <div style={divStyle}>
-        <div style={{ width: "60%", marginRight: "25px" }}>
+        <div style={{ width: '60%', marginRight: '25px' }}>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -105,25 +105,25 @@ function AdminHome(props) {
             </thead>
             <tbody>{renderDataList()}</tbody>
           </Table>
-          <ul className="pagination mt-3 d-flex justify-content-center">
-            <li className={`page-item ${currentPage === 0 ? "disabled" : ""}`}>
-              <a className="page-link" href="#" onClick={handlePreviousPage}>
+          <ul className='pagination mt-3 d-flex justify-content-center'>
+            <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
+              <a className='page-link' href='#' onClick={handlePreviousPage}>
                 &lt;
               </a>
             </li>
             <li
               className={`page-item ${
-                currentPage === lastPage ? "disabled" : ""
+                currentPage === lastPage ? 'disabled' : ''
               }`}
             >
-              <a className="page-link" href="#" onClick={handleNextPage}>
+              <a className='page-link' href='#' onClick={handleNextPage}>
                 &gt;
               </a>
             </li>
           </ul>
         </div>
         {selectedData && (
-          <div style={{ width: "40%" }}>
+          <div style={{ width: '40%' }}>
             <Detail
               key={selectedData.resultPath}
               data={selectedData}
