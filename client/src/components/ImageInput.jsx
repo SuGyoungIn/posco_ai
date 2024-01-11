@@ -125,7 +125,7 @@ function ImageInput(props) {
       console.error(err);
     } finally {
       handleClose();
-      window.location.href = '/select-animal';
+      window.location.href = '/park';
     }
   };
 
