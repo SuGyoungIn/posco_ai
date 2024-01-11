@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import SelectAnimal from './page/Park';
+import { SocketManager } from './components/SocketManager';
 import Home from './page/Home';
 import AdminHome from './page/dashboard/AdminHome';
 import Login from './page/Login';
 import Signup from './page/Signup';
-import Park from './page/Park';
 import Topbar from "./page/global/Topbar";
 import {ColorModeContext, useMode} from "./theme";
 import {CssBaseline, ThemeProvider} from "@mui/material";

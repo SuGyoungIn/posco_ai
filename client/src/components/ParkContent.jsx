@@ -9,7 +9,17 @@ import {
   useCursor,
 } from '@react-three/drei';
 import { charactersAtom } from '../components/SocketManager';
-import AniHusky from './AniHusky';
+// 여기 폴더 풀어서 써야함!
+import AniAlpaca from './models/AniAlpaca';
+import AniCat from './models/AniCat';
+import AniDonkey from './models/AniDonkey';
+import AniFox from './models/AniFox';
+import AniRabbit from './models/AniRabbit';
+import AniShiba from './models/AniShiba';
+import AniStag from './models/AniStag';
+import AniWhiteHorse from './models/AniWhiteHorse';
+import AniHusky from './models/AniHusky';
+
 import { socket } from './SocketManager';
 export default function ParkContent() {
   const garden = useFBX('/models/garden.fbx');
@@ -51,14 +61,59 @@ export default function ParkContent() {
         onPointerEnter={() => setOnFloor(true)}
         onPointerLeave={() => setOnFloor(false)}
       />
-      {characters?.map((character) => (
-        <AniHusky
-          key={character.id}
-          position={
-            new THREE.Vector3(character.position[0], 25, character.position[2])
-          }
-        />
-      ))}
+      {characters?.map((character) => {
+        let AnimalComponent;
+
+        switch (character.animal) {
+          case 0:
+            AnimalComponent = AniAlpaca;
+            break;
+          case 1:
+            AnimalComponent = AniDonkey;
+            break;
+          case 2:
+            AnimalComponent = AniFox;
+            break;
+          case 3:
+            AnimalComponent = AniWhiteHorse;
+            break;
+          case 4:
+            AnimalComponent = AniHusky;
+            break;
+          case 5:
+            AnimalComponent = AniShiba;
+            break;
+          case 6:
+            AnimalComponent = AniStag;
+            break;
+          case 7:
+            AnimalComponent = AniRabbit;
+            break;
+          case 8:
+            AnimalComponent = AniCat;
+            break;
+          default:
+            AnimalComponent = null;
+            break;
+        }
+
+        if (AnimalComponent) {
+          return (
+            <AnimalComponent
+              key={character.id}
+              position={
+                new THREE.Vector3(
+                  character.position[0],
+                  25,
+                  character.position[2]
+                )
+              }
+            />
+          );
+        }
+
+        return null;
+      })}
       <OrbitControls />
     </Suspense>
   );

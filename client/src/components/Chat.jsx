@@ -52,7 +52,7 @@ export default function Chat() {
     e.preventDefault();
     if (input) {
       console.log('메시지 전송:', input);
-      socket.emit('chat message', input);
+      socket.emit('chat message', { id: socket.id, message: input });
       setInput('');
     }
   };
@@ -63,14 +63,14 @@ export default function Chat() {
         {messages.map((msg, index) =>
           index % 2 === 0 ? (
             <li style={messageBubbleStyle} key={index}>
-              {msg.userId + ': ' + msg.message}
+              {msg.nickname + ': ' + msg.message}
             </li>
           ) : (
             <li
               style={{ ...messageBubbleStyle, backgroundColor: '#efefef' }}
               key={index}
             >
-              {msg.userId + ': ' + msg.message}
+              {msg.nickname + ': ' + msg.message}
             </li>
           )
         )}
