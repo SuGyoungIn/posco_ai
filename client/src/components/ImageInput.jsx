@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Container, Row, Col, Modal, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import photo from '../page/assets/photo.png';
+import arrow from '../page/assets/right-arrow.png';
 
 const imageBoxStyle = {
-  width: '30vw',
-  height: '30vw',
+  width: '80%',
+  height: '50vh',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  border: '1px solid #ddd',
+  backgroundColor: '#fff',
+  margin: '0 auto',
+  border: '2px solid #237EED',
 };
 
 const imageStyle = {
-  width: '27vw',
-  height: '27vw',
+  width: '100%',
   objectFit: 'contain',
+  cursor: 'pointer',
+};
+
+const iconStyle = {
+  width: '60px',
+  height: '60px',
+  cursor: 'pointer',
+};
+
+const colStyle = {
+  padding: '20px',
+  backgroundColor: '#C0D9F4',
+  borderRadius: '15px',
 };
 
 function ImageInput(props) {
@@ -29,7 +45,7 @@ function ImageInput(props) {
     resultPath: '',
     result: [],
   });
-
+  const fileInputRef = useRef(null);
   const userId = JSON.parse(localStorage.getItem('user'))?.userId;
 
   const handleSubmit = async (e) => {
@@ -77,6 +93,12 @@ function ImageInput(props) {
     } finally {
       setIsLoading(false);
       handleShow();
+    }
+  };
+
+  const handleIconClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
@@ -129,17 +151,46 @@ function ImageInput(props) {
       </Modal>
 
       <Container>
-        <Row>
-          <Col>
-            <p>이미지 미리보기</p>
+        <Row className='justify-content-md-center'>
+          <Col style={colStyle} xs='5'>
+            <h5 style={{ textAlign: 'center' }}>이미지 미리보기</h5>
             <div style={imageBoxStyle}>
-              {imageSrc && (
-                <img src={imageSrc} alt='preview' style={imageStyle} />
+              {imageSrc ? (
+                <img
+                  src={imageSrc}
+                  alt='preview'
+                  style={imageStyle}
+                  onClick={handleIconClick}
+                />
+              ) : (
+                <img
+                  style={iconStyle}
+                  src={photo}
+                  alt='icon'
+                  onClick={handleIconClick}
+                ></img>
               )}
             </div>
           </Col>
-          <Col>
-            <p>검사 결과</p>
+          <Col
+            md='auto'
+            style={{
+              margin: 'auto 0',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <img
+              style={{ width: '60px', margin: '0 auto 20px ' }}
+              src={arrow}
+              alt='right-arrow'
+            />
+            <Button variant='primary' type='button' onClick={handleSubmit}>
+              업로드하기
+            </Button>
+          </Col>
+          <Col style={colStyle} xs='5'>
+            <h5 style={{ textAlign: 'center' }}>검사 결과</h5>
             <div style={imageBoxStyle}>
               {isLoading ? (
                 <Spinner animation='border' role='status'>
@@ -155,17 +206,14 @@ function ImageInput(props) {
         </Row>
       </Container>
 
-      <form onSubmit={handleSubmit} style={{ marginTop: '30px' }}>
-        <input
-          type='file'
-          accept='image/jpeg'
-          name='file'
-          onChange={(e) => handleImageChange(e.target.files[0])}
-        />
-        <Button variant='primary' type='submit'>
-          업로드하기
-        </Button>
-      </form>
+      <input
+        ref={fileInputRef}
+        type='file'
+        accept='image/jpeg'
+        name='file'
+        hidden
+        onChange={(e) => handleImageChange(e.target.files[0])}
+      />
     </div>
   );
 }

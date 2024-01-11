@@ -4,7 +4,8 @@ import ImageInput from '../components/ImageInput';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 const divStyle = {
-  width: '70vw',
+  width: '100vw',
+  height: '80vh',
   margin: '0 auto',
   paddingTop: '30px',
 };
