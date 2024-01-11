@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import HeaderInfo from '../components/HeaderInfo';
 import ImageInput from '../components/ImageInput';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,13 +11,13 @@ const divStyle = {
 function Home(props) {
   useEffect(() => {
     const user = localStorage.getItem('user');
-    if (user === null) {
+    if (user == null) {
       window.location.href = '/login';
     }
   }, []);
   return (
     <div>
-      <Header />
+      <HeaderInfo />
       <div style={divStyle}>
         <ImageInput />
       </div>

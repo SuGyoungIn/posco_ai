@@ -89,7 +89,7 @@ function Detail({ data, onClose }) {
       console.error(error);
     }
   };
-
+  console.log(data)
   return (
     <div style={detailStyle}>
       <h4>user_id: {data.userId}</h4>
@@ -101,14 +101,6 @@ function Detail({ data, onClose }) {
         )}
         <p>{resImageTxt && resImageTxt}</p>
       </div>
-      <button
-        style={buttonStyle}
-        type="button"
-        className="btn btn-secondary"
-        onClick={onClose}
-      >
-        닫기
-      </button>
     </div>
   );
 }

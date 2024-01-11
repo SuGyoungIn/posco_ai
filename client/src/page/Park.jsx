@@ -1,24 +1,17 @@
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
-
-import ParkContent from '../components/ParkContent';
-import Chat from '../components/Chat';
-import { SocketManager } from '../components/SocketManager';
-
 const divStyle = {
-  width: '90vw',
-  height: '90vh',
-  margin: '30px auto',
+  width: '70vw',
+  margin: '0 auto',
 };
 
 function Park(props) {
   return (
     <div style={divStyle}>
-      <SocketManager />
-      <Canvas shadows camera={{ position: [8, 8, 8], fov: 30 }}>
-        <ParkContent />
-      </Canvas>
-      <Chat />
+      <img
+        src='https://helios-i.mashable.com/imagery/articles/07CIEf4aHNEhXeK7MSpNYt5/hero-image.fill.size_1248x702.v1648747007.jpg'
+        alt='강아지가 산책하고 있는 공원'
+      />
+      <p>행복한 산책 되세요~</p>
     </div>
   );
 }
