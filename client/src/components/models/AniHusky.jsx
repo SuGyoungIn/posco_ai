@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
-import { useFrame, useGraph, extend } from '@react-three/fiber';
+import { useFrame, useGraph } from '@react-three/fiber';
 import { useGLTF, useAnimations, Text } from '@react-three/drei';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { SkeletonUtils } from 'three-stdlib';
-
-extend({ TextGeometry });
 
 export default function AniHusky(props) {
   const { scene, materials, animations } = useGLTF('/models/husky.glb');
   const huskyRef = useRef();
   const { actions } = useAnimations(animations, huskyRef);
   const [huskyAni, setHuskyAni] = useState('AnimalArmature|Idle');
+  const nickname = JSON.parse(localStorage.getItem('user'))?.nickname;
 
   const SPEED = 0.5;
   const position = useMemo(() => props.position, []);
@@ -24,32 +21,6 @@ export default function AniHusky(props) {
     actions[huskyAni].reset().fadeIn(0.32).play();
     return () => actions[huskyAni]?.fadeOut(0.32);
   }, [huskyAni]);
-
-  // // text
-  // const loader = new FontLoader();
-  // loader.load(
-  //   'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json',
-  //   function (font) {
-  //     let materialFront = new THREE.MeshBasicMaterial({ color: 0x36c2cc });
-  //     let materialSide = new THREE.MeshBasicMaterial({ color: 0x04373b });
-  //     let materialArray = [materialFront, materialSide];
-  //     const geometry1 = new TextGeometry('Welcome!', {
-  //       font: font,
-  //       size: 2,
-  //       height: 1,
-  //       curveSegments: 12,
-  //       bevelEnabled: true,
-  //       bevelThickness: 0.1,
-  //       bevelSize: 0.3,
-  //       bevelOffset: 0.1,
-  //       bevelSegments: 3,
-  //     });
-  //     const welcome = new THREE.Mesh(geometry1, materialArray);
-  //     welcome.rotation.x = -Math.PI / 6;
-  //     welcome.position.set(huskyRef.current.position);
-  //     scene.add(welcome);
-  //   }
-  // );
 
   useFrame(() => {
     if (huskyRef.current.position.distanceTo(props.position) > 0.1) {
@@ -82,7 +53,7 @@ export default function AniHusky(props) {
         anchorY='middle'
         position={new THREE.Vector3(position[0], 5, position[2])}
       >
-        userId
+        {nickname}
       </Text>
       <group name='Root_Scene'>
         <group name='RootNode'>

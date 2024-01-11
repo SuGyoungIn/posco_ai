@@ -103,7 +103,7 @@ function ImageInput(props) {
       console.error(err);
     } finally {
       handleClose();
-      window.location.href = '/park';
+      window.location.href = '/select-animal';
     }
   };
 

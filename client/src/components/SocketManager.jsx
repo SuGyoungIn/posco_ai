@@ -20,6 +20,7 @@ export const SocketManager = () => {
     }
 
     function onCharacters(value) {
+      console.log(value);
       setCharacters(value);
     }
 
