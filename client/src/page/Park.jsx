@@ -10,9 +10,8 @@ import ParkContent from '../components/ParkContent';
 import Chat from '../components/Chat';
 
 const divStyle = {
-  width: '90vw',
-  height: '90vh',
-  margin: '30px auto',
+  width: '70vw',
+  margin: '0 auto',
 };
 
 const imageContainer = {

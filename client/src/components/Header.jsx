@@ -1,28 +1,26 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Navbar, Button } from 'react-bootstrap';
+import React from "react";
+import { Typography, Box, useTheme } from "@mui/material";
+import { tokens } from "../theme";
 
-function Header(props) {
-  const nickName = JSON.parse(localStorage.getItem('user'))?.nickname;
+const Header = ({ title, subtitle }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
-  const logout = () => {
-    localStorage.removeItem('user');
-    alert('로그아웃 되었습니다.');
-    window.location.href = '/login';
-  };
   return (
-    <Navbar bg='dark' data-bs-theme='dark'>
-      <Container>
-        <Navbar.Brand href='/'>LOGO</Navbar.Brand>
-        <Navbar.Collapse className='justify-content-end'>
-          <Navbar.Text>{nickName && <p>{nickName} 님</p>}</Navbar.Text>
-          <Button variant='outline-secondary' onClick={() => logout()}>
-            로그아웃
-          </Button>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <Box mb="30px">
+      <Typography
+        variant="h2"
+        color={colors.grey[100]}
+        fontWeight="bold"
+        sx={{ mb: "5px" }}
+      >
+        {title}
+      </Typography>
+      <Typography variant="h5" color={colors.greenAccent[400]}>
+        {subtitle}
+      </Typography>
+    </Box>
   );
-}
+};
 
 export default Header;

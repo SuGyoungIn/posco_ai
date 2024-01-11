@@ -52,11 +52,12 @@ function Login(props) {
         const user = {
           userId: data.userId,
           nickname: nickname,
+          role: data.role,
         };
         window.localStorage.setItem('user', JSON.stringify(user));
         alert('로그인이 되었습니다.');
         if (data.role === 1) {
-          window.location.href = '/admin-home';
+          window.location.href = '/admin/home';
         } else if (data.role === 2) {
           window.location.href = '/';
         }
