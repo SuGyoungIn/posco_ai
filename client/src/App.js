@@ -12,6 +12,7 @@ import {CssBaseline, ThemeProvider} from "@mui/material";
 import {MyProSidebarProvider} from "./page/global/sidebar/sidebarContext";
 import HeaderInfo from "./components/HeaderInfo";
 import CustomHome from "./page/custom/CustomHome";
+import Park from "./page/Park";
 
 const App = () => {
   const [theme, colorMode] = useMode();
