@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../components/Header';
+import HeaderInfo from '../components/HeaderInfo';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { socket } from '../components/SocketManager';
@@ -10,14 +10,18 @@ import ParkContent from '../components/ParkContent';
 import Chat from '../components/Chat';
 
 const divStyle = {
-  width: '70vw',
+  width: '90vw',
+  height: '80vh',
   margin: '0 auto',
 };
 
 const imageContainer = {
+  height: '55vh',
   display: 'grid',
-  gridTemplateRows: 'repeat(3, 200px)',
+  gridTemplateRows: 'repeat(2, 1fr)',
   gridTemplateColumns: 'repeat(3, 1fr)',
+  justifyContent: 'center',
+  alignContent: 'center',
 };
 const imageBoxStyle = {
   width: '250px',
@@ -39,6 +43,7 @@ const pickImageBoxStyle = {
 const imageStyle = {
   width: '200px',
   height: '150px',
+  margin: '0 auto',
   objectFit: 'cover',
 };
 
@@ -70,7 +75,6 @@ export default function Park(props) {
         const data = response.data;
         setShow(true);
         console.log(data);
-        // window.location.href = '/park';
       }
     } catch (err) {
       console.error(err);
@@ -81,10 +85,6 @@ export default function Park(props) {
     {
       name: '알파카',
       image: '/images/alpaca.png',
-    },
-    {
-      name: '당나귀',
-      image: '/images/donkey.png',
     },
     {
       name: '여우',
@@ -106,19 +106,11 @@ export default function Park(props) {
       name: '숫사슴',
       image: '/images/stag.png',
     },
-    {
-      name: '토끼',
-      image: '/images/rabbit.png',
-    },
-    {
-      name: '고양이',
-      image: '/images/cat.png',
-    },
   ];
 
   return (
     <div>
-      <Header />
+      <HeaderInfo />
       {show ? (
         <div style={divStyle}>
           <Canvas shadows camera={{ position: [8, 8, 8], fov: 30 }}>
@@ -138,7 +130,7 @@ export default function Park(props) {
                     src={animal.image}
                     alt={animal.name}
                   ></img>
-                  <p>{animal.name}</p>
+                  <p style={{ textAlign: 'center' }}>{animal.name}</p>
                 </div>
               ) : (
                 <div
@@ -153,7 +145,9 @@ export default function Park(props) {
                     src={animal.image}
                     alt={animal.name}
                   ></img>
-                  <p>{animal.name}</p>
+                  <p style={{ textAlign: 'center', margin: '10px 0 0 0' }}>
+                    {animal.name}
+                  </p>
                 </div>
               )
             )}
