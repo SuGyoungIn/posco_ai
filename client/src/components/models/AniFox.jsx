@@ -27,7 +27,7 @@ export default function AniFox(props) {
   }, [ani]);
 
   useFrame(() => {
-    if (group.current.position.distanceTo(props.position) > 0.1) {
+    if (group.current.position.distanceTo(props.position) > 1) {
       const direction = group.current.position
         .clone()
         .sub(props.position)

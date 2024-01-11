@@ -22,7 +22,7 @@ export default function AniHusky(props) {
   }, [huskyAni]);
 
   useFrame(() => {
-    if (huskyRef.current.position.distanceTo(props.position) > 0.1) {
+    if (huskyRef.current.position.distanceTo(props.position) > 1) {
       const direction = huskyRef.current.position
         .clone()
         .sub(props.position)
