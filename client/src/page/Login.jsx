@@ -1,34 +1,10 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'boxicons'
+import './Login.css'
+
 import axios from 'axios';
+import {Button} from "@mui/material";
 
-const divStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  width: '60vw',
-  minWidth: '480px',
-  height: '60vh',
-  margin: '20vh auto',
-  backgroundColor: '#ddd',
-  borderRadius: '20px',
-  boxSizing: 'border-box',
-};
-
-const labelStyle = {
-  marginBottom: '10px',
-};
-
-const inputStyle = {
-  marginBottom: '20px',
-  border: '1px solid #aaa',
-  width: '30vw',
-  height: '40px',
-  padding: '0 10px',
-  borderRadius: '10px',
-};
 function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,41 +43,26 @@ function Login(props) {
     }
   };
   return (
-    <div style={divStyle}>
-      <h1>PPARK</h1>
+    <div class="wrapper">
       <form onSubmit={handleSubmit}>
-        <div>
-          <label style={labelStyle} htmlFor='nickname'>
-            <b>아이디</b>
-          </label>
-          <br />
-          <input
-            type='text'
-            placeholder='아이디를 입력하세요'
-            id='nickname'
-            name='nickname'
-            style={inputStyle}
-            required
-          />
+        <h1>로그인</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Username"/>
+          <box-icon type='solid' name='user'></box-icon>
         </div>
-        <div>
-          <label style={labelStyle} htmlFor='pw'>
-            <b>비밀번호</b>
-          </label>
-          <br />
-          <input
-            type='password'
-            placeholder='비밀번호를 입력하세요'
-            id='pw'
-            name='pw'
-            style={inputStyle}
-            required
-          />
+        <div class="input-box">
+          <input type="password" placeholder="Password" required />
+          <box-icon name='lock-alt' type='solid' ></box-icon>
         </div>
-        <Button variant='primary' type='submit'>
-          Login
-        </Button>
-        <a href='/signup'>회원가입하러 가기</a>
+
+        <Button type="submit" class="btn">로그인</Button>
+        <div class="register-link">
+          <p>계정이 없으신가요? <a href="/signup">회원가입</a></p>
+        </div>
+        {/*<Button variant='primary' type='submit'>*/}
+        {/*  Login*/}
+        {/*</Button>*/}
+        {/*<a href='/signup'>회원가입하러 가기</a>*/}
       </form>
     </div>
   );
