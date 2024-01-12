@@ -15,9 +15,17 @@ const imageBoxStyle = {
   border: '2px solid #237EED',
 };
 
-const imageStyle = {
+const imageInputStyle = {
+  maxWidth: '100%',
+  maxHeight: '100%',
   objectFit: 'contain',
   cursor: 'pointer',
+};
+
+const imageStyle = {
+  maxWidth: '100%',
+  maxHeight: '100%',
+  objectFit: 'contain',
 };
 
 const iconStyle = {
@@ -157,7 +165,7 @@ function ImageInput(props) {
                 <img
                   src={imageSrc}
                   alt='preview'
-                  style={imageStyle}
+                  style={imageInputStyle}
                   onClick={handleIconClick}
                 />
               ) : (
