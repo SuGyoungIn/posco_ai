@@ -21,6 +21,9 @@ const imageInputStyle = {
   objectFit: 'contain',
   cursor: 'pointer',
 };
+const modalStyle = {
+  color: 'black',
+};
 
 const imageStyle = {
   maxWidth: '100%',
@@ -139,7 +142,7 @@ function ImageInput(props) {
   const handleShow = () => setShow(true);
   return (
     <div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal style={modalStyle} show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>검식 결과</Modal.Title>
         </Modal.Header>
