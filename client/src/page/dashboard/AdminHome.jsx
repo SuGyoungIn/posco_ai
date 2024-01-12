@@ -45,7 +45,6 @@ const Dashboard = () => {
             setEnrollCount(response.data.data.count)
             response = await axios.get(url + `/recent?limit=10`)
             setEnterRecent(response.data.data.member_list)
-            setEnterRecent(mockTransactions)
             console.log(enterRecent);
         } catch (err) {
             console.error(err);
@@ -272,13 +271,15 @@ const Dashboard = () => {
                                                 {member.nickname}
                                             </Typography>
                                         </Box>
-                                        <Box color={colors.grey[100]}>{member.login_time}</Box>
+                                        <Box color={colors.grey[100]}>{member.entry_time}</Box>
                                         <Box
                                             color={colors.greenAccent[500]}
-                                            p="5px 10px"
+                                            p="1px 10px"
                                             borderRadius="4px"
+                                            width="150px"
+                                            textAlign="right"
                                         >
-                                            {i+1}
+                                            {member.breed}
                                         </Box>
                                     </Box>
                                 );

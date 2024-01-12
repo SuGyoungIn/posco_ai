@@ -6,7 +6,6 @@ import photo from '../page/assets/photo.png';
 import arrow from '../page/assets/right-arrow.png';
 
 const imageBoxStyle = {
-  width: '80%',
   height: '50vh',
   display: 'flex',
   justifyContent: 'center',
@@ -17,7 +16,6 @@ const imageBoxStyle = {
 };
 
 const imageStyle = {
-  width: '100%',
   objectFit: 'contain',
   cursor: 'pointer',
 };
