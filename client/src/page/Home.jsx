@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import HeaderInfo from '../components/HeaderInfo';
+import React, {useEffect, useState} from 'react';
+import Header from "../components/Header";
 import ImageInput from '../components/ImageInput';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Topbar from "./global/Topbar";
+import {MyProSidebarProvider} from "./global/sidebar/sidebarContext";
+
 const divStyle = {
-  width: '100vw',
-  height: '80vh',
-  margin: '0 auto',
-  paddingTop: '30px',
+    height: '80vh',
+    margin: '0 auto',
+    paddingTop: '30px',
 };
+
 function Home(props) {
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user == null) {
-      window.location.href = '/login';
-    }
-  }, []);
-  return (
-    <div>
-      <HeaderInfo />
-      <div style={divStyle}>
-        <ImageInput />
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        if (user == null) {
+            window.location.href = '/login';
+        }
+    }, []);
+    return (
+            <div>
+                <Header title="공원 입장 페이지" subtitle="반려동물을 찍어 입장 해주시기 바랍니다."/>
+                <div style={divStyle}>
+                    <ImageInput/>
+                </div>
+            </div>
+    );
 }
 
 export default Home;
