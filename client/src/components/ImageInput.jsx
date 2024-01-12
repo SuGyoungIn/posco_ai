@@ -15,9 +15,14 @@ const imageBoxStyle = {
   border: '2px solid #237EED',
 };
 
+const modalStyle = {
+  color: 'black',
+}
+
 const imageStyle = {
   objectFit: 'contain',
   cursor: 'pointer',
+  width: '100%',
 };
 
 const iconStyle = {
@@ -131,7 +136,7 @@ function ImageInput(props) {
   const handleShow = () => setShow(true);
   return (
     <div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal style={modalStyle} show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>검식 결과</Modal.Title>
         </Modal.Header>
