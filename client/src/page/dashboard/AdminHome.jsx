@@ -43,7 +43,7 @@ const Dashboard = () => {
             url = process.env.REACT_APP_DASHBOARD_URL + `/members`;
             response = await axios.get(url + `/today/count`);
             setEnrollCount(response.data.data.count)
-            response = await axios.get(url + `/recent?limit=10`)
+            response = await axios.get(url + `/recent?limit=12`)
             setEnterRecent(response.data.data.member_list)
             console.log(enterRecent);
         } catch (err) {

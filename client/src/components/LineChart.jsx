@@ -25,9 +25,9 @@ const LineChart = ({ isDashboard = false }) => {
     try {
       let response = await axios.get(url);
       let data = response.data.data
-      const prevData = data.previous_day_dogs;
-      const curData = data.current_day_dogs;
-      setData(prev => [addLine(prevData,"어제"), addLine(curData, "오늘")])
+      const prevData = addLine(data.previous_day_dogs, "어제");
+      const curData = addLine(data.current_day_dogs, "오늘");
+      setData([prevData, curData])
     } catch (err) {
       console.error(err);
     }
@@ -86,7 +86,7 @@ const LineChart = ({ isDashboard = false }) => {
         type: "linear",
         min: "auto",
         max: "auto",
-        stacked: true,
+        stacked: false,
         reverse: false,
       }}
       yFormat=" >-.2f"

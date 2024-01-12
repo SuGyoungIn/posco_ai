@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import HeaderInfo from '../components/HeaderInfo';
 import {Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {socket} from '../components/SocketManager';
@@ -15,6 +14,11 @@ const divStyle = {
     height: '80vh',
     margin: '0 auto',
     color: "black",
+};
+
+const divPickStyle = {
+    height: '80vh',
+    margin: '0 auto',
 };
 
 const imageContainer = {
@@ -121,7 +125,7 @@ export default function Park(props) {
                         <Chat/>
                     </div>
                 ) : (
-                    <div style={divStyle}>
+                    <div style={divPickStyle}>
                         <Header title="공원 입장" subtitle="원하는 동물을 선택하세요."/>
                         <div style={imageContainer}>
                             {animals.map((animal, idx) =>
