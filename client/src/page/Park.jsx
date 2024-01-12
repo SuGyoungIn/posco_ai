@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 const divStyle = {
     height: '80vh',
     margin: '0 auto',
+    color: "black",
 };
 
 const imageContainer = {
